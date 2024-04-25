@@ -1,17 +1,17 @@
 USE gestioninscripcion;
 
 -- ---------------------------- Creacion de Usuarios -----------------------------------------
-CREATE USER 
-	"Augusto"@"localhost"
+CREATE USER IF NOT EXISTS 
+	"DiegoMartin"@"localhost"
     IDENTIFIED BY "alumno1"
 ;
 
-CREATE USER 
-	"Nico"@"localhost"
+CREATE USER IF NOT EXISTS
+	"LauraLopez"@"localhost"
     IDENTIFIED BY "alumno2"
 ;
 
-CREATE USER 
+CREATE USER IF NOT EXISTS
 	"CarlosLopez"@"localhost"
     IDENTIFIED BY "docente"
 ;
@@ -19,13 +19,13 @@ CREATE USER
 -- ------------------PERMISOS OTORGADOS ------------------------------------------
 
 -- ---Permisos para alumnos-------
-GRANT SELECT ON gestioninscripcion.mesasexamen TO "Augusto"@"localhost";
-GRANT SELECT ON gestioninscripcion.materias TO "Augusto"@"localhost";
-GRANT SELECT, INSERT ON gestioninscripcion.inscripciones TO "Augusto"@"localhost";
+GRANT SELECT ON gestioninscripcion.mesasexamen TO "DiegoMartin"@"localhost";
+GRANT SELECT ON gestioninscripcion.materias TO "DiegoMartin"@"localhost";
+GRANT SELECT, INSERT ON gestioninscripcion.inscripciones TO "DiegoMartin"@"localhost";
 
-GRANT SELECT ON gestioninscripcion.mesasexamen TO "Nico"@"localhost";
-GRANT SELECT ON gestioninscripcion.materias TO "Nico"@"localhost";
-GRANT SELECT, INSERT ON gestioninscripcion.inscripciones TO "Nico"@"localhost";
+GRANT SELECT ON gestioninscripcion.mesasexamen TO "LauraLopez"@"localhost";
+GRANT SELECT ON gestioninscripcion.materias TO "LauraLopez"@"localhost";
+GRANT SELECT, INSERT ON gestioninscripcion.inscripciones TO "LauraLopez"@"localhost";
 
 -- ---Permisos para docente-------
 GRANT ALL PRIVILEGES ON gestioninscripcion.* TO "CarlosLopez"@"localhost";
