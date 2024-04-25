@@ -1,3 +1,5 @@
+USE GestionInscripcion;
+
 -- VISTAS -- 
 
 -- VISTA DE ALUMNOS INSCRIPTOS --
@@ -13,9 +15,6 @@ CREATE VIEW Alumnos_Inscritos AS
 			ON I.Id_examen = M.Id_examen
 ;
 
-SELECT 
-	* 
-FROM Alumnos_Inscritos; -- VISUALIZACION DE VISTA DE ALUMNOS INSCRIPTOS
 
 -- VISTA DE MATERIAS POR DOCENTE --
 CREATE VIEW Materias_Con_Docentes AS
@@ -28,9 +27,7 @@ CREATE VIEW Materias_Con_Docentes AS
 		ON M.Id_docente = D.Id_docente
 ;
 
-SELECT 
-	* 
-FROM materias_con_docentes; -- VISUALIZACION DE VISTA DE DOCENTE-MATERIA
+
 
 -- VISTA DE MESA DE EXAMENES --
 CREATE VIEW Mesas_Examenes_Docentes AS
@@ -45,6 +42,3 @@ CREATE VIEW Mesas_Examenes_Docentes AS
 		ON M.Id_docente = D.Id_docente
 ;
 
-SELECT 
-	* 
-FROM mesas_examenes_docentes; -- VISUALIZACION DE VISTA DE MESA DE EXAMENES

@@ -4,6 +4,8 @@ CREATE DATABASE IF NOT EXISTS GestionInscripcion;
 
 USE GestionInscripcion;
 
+SET AUTOCOMMIT = 0;
+
 -- Tabla de Alumnos
 CREATE TABLE IF NOT EXISTS Alumnos (
     Id_alumno INT PRIMARY KEY AUTO_INCREMENT,
