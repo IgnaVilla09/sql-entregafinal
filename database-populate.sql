@@ -109,4 +109,4 @@ SAVEPOINT inscripto_2;
 
 -- RELEASE inscripto_2;
 
--- COMMIT;
+COMMIT;
