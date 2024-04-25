@@ -1,0 +1,47 @@
+-- STORED PROCEDURES -- 
+
+-- PROCEDURES QUE MUESTRA CUANTOS EXAMENES SE INSCRIBE EL ALUMNO INDICADO 
+DROP PROCEDURE IF EXISTS obtener_alumno_examenes;
+
+
+DELIMITER //
+
+CREATE PROCEDURE obtener_alumno_examenes(IN alumno_id INT)
+BEGIN
+	SELECT
+		CONCAT(A.Nombre, ' ', A.Apellido) AS Nombre_Completo,
+		COUNT(DISTINCT I.Id_examen) AS Cantidad_Examenes
+	FROM Alumnos AS A
+JOIN Inscripciones AS I 
+	ON A.Id_alumno = I.Id_alumno
+WHERE TRUE 
+	AND A.Id_alumno = alumno_id
+GROUP BY A.Id_alumno;  
+
+END//
+
+DELIMITER ;
+
+CALL obtener_alumno_examenes(1); -- LLAMADO DE PROCEDURES CON SU PARAMETRO DE ENTRADA
+
+-- PROCEDURES QUE ORDENA LOS EXAMENES A TOMAR Y MUESTRA CUANTOS ALUMNOS HAY INSCRIPTOS HASTA EL MOMENTO.
+
+DROP PROCEDURE IF EXISTS orden_examenes; -- DROPEAR SI EXISTE
+DELIMITER //
+
+CREATE PROCEDURE orden_examenes()
+BEGIN
+  SELECT
+    ME.fecha AS Fecha_Examen
+,	COUNT(I.Id_alumno) AS Cantidad_Inscriptos
+FROM MesasExamen AS ME
+LEFT JOIN Inscripciones AS I  -- HACEMOS UN LEFT JOIN ASI MUESTRA TODOS, INCLUSO LOS QUE NO TENGAN INSCRIPTOS.
+	ON ME.Id_examen = I.Id_examen
+GROUP BY ME.Id_examen
+ORDER BY ME.fecha ASC; -- ORDENAMOS ASCENDENTEMENTE
+
+END//
+
+DELIMITER ;
+
+CALL orden_examenes(); -- LLAMAMOS AL PROCEDURES
