@@ -1,6 +1,14 @@
 
 # Presentación y Descripción del Programa: Gestión de Inscripciones a Mesas de Exámenes 📚
 
+
+## Entrega Final
+
+- Alumno: Ignacio Villafañe
+- Comisión 53175
+- Profesor: Anderson Michel Torres
+- Tutor: Nancy Elizabeth Villena Reines
+
 ## Presentación:
 Este programa busca facilitar la gestión de inscripciones de alumnos a mesas de exámenes. Con esta base de datos, se busca optimizar el proceso de inscripción, brindando datos específicos para administrar las solicitudes de los alumnos y organizar eficientemente las mesas de exámenes.
 ## Presentación técnica:
@@ -24,7 +32,28 @@ Además, se presenta el DUMP para hacer un IMPORT de la database completa (estru
 
 #### TABLAS
 
-```http
+```
+  Tabla de carreras
+```
+
+| Dato | Tipo     | Descripción                |
+| :-------- | :------- | :------------------------- |
+| `id_carrera` | `int` | **PRIMARY KEY** |
+| `Nombre` | `VARCHAR(50)` | |
+| `Descripción` | `VARCHAR(255)` | |
+
+```
+  Tabla de planes
+```
+
+| Dato | Tipo     | Descripción                |
+| :-------- | :------- | :------------------------- |
+| `id_plan` | `int` | **PRIMARY KEY** |
+| `id_carrera` | `int` | **FOREING KEY** |
+| `Nombre` | `VARCHAR(50)` | |
+| `Descripción` | `VARCHAR(255)` | |
+
+```
   Tabla de alumnos
 ```
 
@@ -37,7 +66,7 @@ Además, se presenta el DUMP para hacer un IMPORT de la database completa (estru
 | `Telefono` | `VARCHAR(20)` |  |
 
 
-```http
+```
   Tabla de docente
 ```
 
@@ -47,17 +76,18 @@ Además, se presenta el DUMP para hacer un IMPORT de la database completa (estru
 | `Nombre` | `VARCHAR(50)` | |
 | `Apellido` | `VARCHAR(50)` | |
 
-```http
+```
   Tabla de materias
 ```
 
 | Dato | Tipo     | Descripción                |
 | :-------- | :------- | :------------------------- |
 | `id_materias` | `int` | **PRIMARY KEY** |
+| `id_plan` | `int`  | **FOREING KEY**|
 | `Nombre` | `VARCHAR(50)` | |
 | `id_docente` | `int`  | **FOREING KEY**|
 
-```http
+```
   Tabla de Mesas de examen
 ```
 
@@ -67,7 +97,7 @@ Además, se presenta el DUMP para hacer un IMPORT de la database completa (estru
 | `Fecha` | `DATETIME` | |
 | `id_materias` | `int`  | **FOREING KEY**|
 
-```http
+```
   Tabla de Inscripciones
 ```
 
@@ -77,6 +107,31 @@ Además, se presenta el DUMP para hacer un IMPORT de la database completa (estru
 | `id_alumno` | `int` | **FOREING KEY**|
 | `id_examen` | `int`  | **FOREING KEY**|
 
+```
+  Notas
+```
+
+| Dato | Tipo     | Descripción                |
+| :-------- | :------- | :------------------------- |
+| `id_nota` | `int` | **PRIMARY KEY** |
+| `id_inscripciones` | `int` | **FOREING KEY**|
+| `nota` | `decimal(3,1)`  ||
+| `comentarios` | `text`  ||
+| `fecha_nota` | `DATETIME`  ||
+
+```
+  log_alumnos
+```
+
+| Dato | Tipo     | Descripción                |
+| :-------- | :------- | :------------------------- |
+| `TIME_STAMP` | `TIMESTAMP` ||
+| `Nombre` | `VARCHAR(50)` ||
+| `Apellido` | `VARCHAR(50)`  ||
+| `correo` | `VARCHAR(100)`  ||
+| `telefono` | `VARCHAR(50)`  ||
+| `acciones` | `VARCHAR(50)`  ||
+
 ## Vistas
 
 - Alumnos inscriptos.
@@ -85,11 +140,17 @@ Además, se presenta el DUMP para hacer un IMPORT de la database completa (estru
 
 - Mesas de examen a detalle.
 
+- Datos completos de inscripción.
+
+- Relacion planes-materias
+
 ## Funciones
 
 - Verificación de inscriptos.
 
 - Cantidad de inscriptos.
+
+- Resultado de inscripción
 
 ## Procedures
 
