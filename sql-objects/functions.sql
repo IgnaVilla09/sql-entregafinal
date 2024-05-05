@@ -35,7 +35,7 @@ END//
 
 DELIMITER ;
 
-
+-- SELECT alumno_inscripto_materia(3,3);
 
 -- FUNCIÓN QUE INDICA CUANTOS INSCRIPTO HAY EN EL EXAMEN
 
@@ -56,3 +56,38 @@ BEGIN
 END//
 
 DELIMITER ;
+
+-- SELECT cantidad_inscriptos_examen(2);
+
+-- FUNCION QUE INDICA SI APROBO UN EXAMEN O NO.
+
+DELIMITER //
+
+CREATE FUNCTION EvaluarInscripcionAprobada(Id_inscripcion INT) RETURNS VARCHAR(100)
+DETERMINISTIC
+BEGIN
+    DECLARE notaF FLOAT;
+    DECLARE mensaje VARCHAR(100);
+
+    -- Obtener la nota asociada a la inscripción
+    SELECT 
+		n.Nota 
+	INTO 
+		notaF 
+    FROM gestioninscripcion.notas AS n 
+    WHERE n.Id_inscripcion = Id_inscripcion;
+
+    -- Evaluar si la nota es mayor o igual al puntaje mínimo para aprobar
+    IF notaF >= 6.0 THEN
+        SET mensaje = CONCAT('Aprobado - Nota: ', notaF);
+    ELSE
+        SET mensaje = CONCAT('No Aprobado - Nota: ', notaF);
+    END IF;
+
+    RETURN mensaje;
+END//
+
+DELIMITER ;
+
+
+-- SELECT EvaluarInscripcionAprobada(17);

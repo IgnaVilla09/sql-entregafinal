@@ -42,3 +42,21 @@ CREATE VIEW Mesas_Examenes_Docentes AS
 		ON M.Id_docente = D.Id_docente
 ;
 
+-- VISTA DE TODA LA INFORMACION DEL EXAMEN
+
+CREATE VIEW InscripcionesInfo AS
+SELECT i.Id_inscripciones, a.Nombre AS Nombre_Alumno, a.Apellido AS Apellido_Alumno, e.fecha AS Fecha_Examen, n.Nota, n.Comentarios
+FROM Inscripciones i
+INNER JOIN Alumnos a ON i.Id_alumno = a.Id_alumno
+INNER JOIN MesasExamen e ON i.Id_examen = e.Id_examen
+LEFT JOIN Notas n ON i.Id_inscripciones = n.Id_inscripcion;
+
+
+
+-- VISTA DE CANTIDAD DE MATERIAS POR PLAN
+
+CREATE VIEW PlanesMaterias AS
+SELECT p.Nombre AS Nombre_Plan, COUNT(m.Id_materias) AS Total_Materias
+FROM Planes p
+LEFT JOIN Materias m ON p.Id_plan = m.Id_plan
+GROUP BY p.Nombre;

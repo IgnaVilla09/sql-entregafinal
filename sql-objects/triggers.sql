@@ -23,6 +23,11 @@ END //
 
 DELIMITER ;
 
+
+-- PRUEBA DE TRIGGER
+-- INSERT INTO Alumnos (Nombre, Apellido, Email, Telefono, Id_carrera) VALUES
+--  ('Ignacio', 'Pérez', 'igna@correo.com', '123421117890', 1);
+
 -- TRIGGER QUE IMPIDE LA ELIMINACION DE MESAS DE EXAMEN CON ALUMNOS INSCRIPTOS
 
 DELIMITER //
